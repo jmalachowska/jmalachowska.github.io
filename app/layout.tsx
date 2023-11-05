@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { StyledComponentsRegistry, GlobalStyles } from '@/styles/styles';
+import { StyledComponentsRegistry, DynamicGlobalStyle } from '@/styles/styles';
 import { Navbar } from '@/components/navbar';
 import { Logo } from '@/components/logo';
 
@@ -13,7 +13,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 		<html lang="en">
 			<body>
 				<StyledComponentsRegistry>
-					<GlobalStyles />
+					<DynamicGlobalStyle />
 					<Navbar>
 						<Logo src="image.svg" />
 					</Navbar>

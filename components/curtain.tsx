@@ -1,20 +1,21 @@
 'use client';
 
-import React, { createRef, useEffect, useState } from 'react';
+import React from 'react';
 import type { ReactNode } from 'react';
 import styled from 'styled-components';
 import { useElementScroll } from '@/utils/viewport';
 
 const _CurtainContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-end;
+
 	position: relative;
-	height: 480px;
-	max-width: 1920px;
+	height: 640px;
+	max-width: 1280px;
 	margin: 0 auto;
 	overflow: hidden;
-
-	@media (min-width: 720px) {
-		height: 720px;
-	}
 `;
 
 type _CurtainImageProps = {
@@ -33,26 +34,45 @@ function _CurtainImageAttributes({ position, scroll }: _CurtainImageProps) {
 }
 
 const _CurtainImage = styled.img.attrs<_CurtainImageProps>(_CurtainImageAttributes)`
-	${({ position }) => `
-	display: ${position === 'right' ? 'block' : 'none'};
-	${position}: 0;
-	`}
 	position: absolute;
-	max-height: 100%;
 	height: 100%;
 	top: 50%;
 
 	user-select: none;
 
-	@media (min-width: 1280px) {
+	${({ position }) => `
+	display: ${position === 'right' ? 'block' : 'none'};
+	${position}: 0;
+
+	@media (min-width: 720px) {
 		display: block;
-		height: 100%;
-		width: auto;
+	}
+	`}
+`;
+
+const _CurtainBackground = styled.img.attrs<Pick<_CurtainImageProps, 'scroll'>>(({ scroll }) => ({
+	style: {
+		transform: `translateY(${scroll}%)`
+	}
+}))`
+	position: absolute;
+	top: 0;
+	display: block;
+	height: 60%;
+	z-index: 0;
+
+	@media (min-width: 720px) {
+		height: 80%;
 	}
 `;
 
 const _CurtainContent = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 	z-index: 1;
+	width: 100%;
+	max-width: 720px;
 `;
 
 export type CurtainProps = {
@@ -61,19 +81,13 @@ export type CurtainProps = {
 };
 
 export function Curtain({ children, src }: CurtainProps) {
-	const [currentScroll, setCurrentScroll] = useState<number>(0);
-	const curtainRef = createRef<HTMLDivElement>();
-	const elementScroll = useElementScroll<HTMLDivElement>();
-
-	useEffect(() => {
-		setCurrentScroll(elementScroll(curtainRef.current));
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [elementScroll]);
+	const [ref, scroll] = useElementScroll<HTMLDivElement>();
 
 	return (
-		<_CurtainContainer ref={curtainRef}>
-			<_CurtainImage src={src[0]} position="left" scroll={currentScroll} />
-			<_CurtainImage src={src[1]} position="right" scroll={currentScroll} />
+		<_CurtainContainer ref={ref}>
+			<_CurtainBackground alt="" aria-hidden src={src[2]} scroll={scroll * 1.25} />
+			<_CurtainImage alt="" aria-hidden src={src[0]} position="left" scroll={scroll * 0.4} />
+			<_CurtainImage alt="" aria-hidden src={src[1]} position="right" scroll={scroll * 0.4} />
 			<_CurtainContent>{children}</_CurtainContent>
 		</_CurtainContainer>
 	);

@@ -1,13 +1,8 @@
-import { useEffect, useState } from 'react';
+import { createRef, useEffect, useState } from 'react';
+import type { Ref } from 'react';
 import { clamp } from './math';
 
-export type ElementScrollCalculator<ElementType extends HTMLElement> = (
-	element: ElementType | null
-) => number;
-
-export function useElementScroll<
-	ElementType extends HTMLElement
->(): ElementScrollCalculator<ElementType> {
+export function useScroll(): number {
 	const [windowScroll, setWindowScroll] = useState<number>(0);
 
 	useEffect(() => {
@@ -22,14 +17,25 @@ export function useElementScroll<
 		};
 	}, []);
 
-	const scrollCalculator = (element: ElementType | null): number => {
+	return windowScroll;
+}
+
+export function useElementScroll<ElementType extends HTMLElement>(): [Ref<ElementType>, number] {
+	const elementRef = createRef<ElementType>();
+	const [elementScroll, setElementScroll] = useState<number>(0);
+	const windowScroll = useScroll();
+
+	useEffect(() => {
+		const element = elementRef.current;
 		if (!element) {
-			return 0;
+			return;
 		}
 
 		const elementBox: DOMRect = element.getBoundingClientRect();
-		return (clamp(0, windowScroll - elementBox.top, elementBox.height) / elementBox.height) * 100;
-	};
+		const scrollPercentage =
+			(clamp(0, windowScroll - elementBox.top, elementBox.height) / elementBox.height) * 100;
+		setElementScroll(scrollPercentage);
+	}, [windowScroll, elementRef]);
 
-	return scrollCalculator;
+	return [elementRef, elementScroll];
 }

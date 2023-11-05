@@ -9,13 +9,21 @@ export type CardProps = {
 	padding?: number;
 	marginTop?: number;
 	marginBottom?: number;
-	marginLeft?: number | 'auto';
-	marginRight?: number | 'auto';
+	marginLeft?: number;
+	marginRight?: number;
+	width?: number | 'auto';
+	backgroundGradient?: string;
 } & CommonProps;
 
 const _Card = styled.div<CardProps>`
 	border-radius: 16px;
 	background-color: white;
+
+	${({ backgroundGradient }) =>
+		backgroundGradient &&
+		`
+	background: linear-gradient(${backgroundGradient}, var(--brand-orange));
+	`}
 
 	${(props) => `
 	padding: ${props.padding ?? 0}px;

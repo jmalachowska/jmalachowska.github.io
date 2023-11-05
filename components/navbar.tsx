@@ -11,7 +11,7 @@ const _Navbar = styled.div<{ backgroundColor?: string }>`
 	width: 100%;
 	height: var(--navbar-height);
 	${({ backgroundColor }) => `
-		background-color: ${backgroundColor ?? 'white'};
+		background-color: ${backgroundColor ?? 'none'};
 	`}
 	backdrop-filter: blur(10px);
 
@@ -46,7 +46,7 @@ export function Navbar({ children, ...props }: NavbarProps) {
 
 	return (
 		<_Navbar
-			backgroundColor={solidBackground ? 'rgba(255, 0, 144, 0.6)' : 'transparent'}
+			backgroundColor={solidBackground ? 'var(--dynamic-navbar-background)' : 'transparent'}
 			{...props}>
 			<_NavbarContainer>{children}</_NavbarContainer>
 		</_Navbar>

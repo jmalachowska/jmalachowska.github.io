@@ -1,21 +1,19 @@
 'use client';
 
 import { CommonProps } from '@/utils/props';
-import { ReactNode, useEffect, useState } from 'react';
+import { ReactNode } from 'react';
 import styled from 'styled-components';
 
-const _Navbar = styled.div<{ backgroundColor?: string }>`
+const _Navbar = styled.div`
 	position: fixed;
 	top: 0;
 	z-index: 999;
 	width: 100%;
 	height: var(--navbar-height);
-	${({ backgroundColor }) => `
-		background-color: ${backgroundColor ?? 'none'};
-	`}
+	background-color: var(--dynamic-navbar-background);
 	backdrop-filter: blur(10px);
 
-	transition: background-color 0.2s;
+	transition: background-color 0.5s;
 `;
 
 const _NavbarContainer = styled.nav`
@@ -31,23 +29,8 @@ export type NavbarProps = {
 } & CommonProps;
 
 export function Navbar({ children, ...props }: NavbarProps) {
-	const [solidBackground, setSolidBackground] = useState<boolean>(false);
-
-	useEffect(() => {
-		function updateScrollState() {
-			setSolidBackground(window.scrollY ? true : false);
-		}
-
-		addEventListener('scroll', updateScrollState);
-		return () => {
-			removeEventListener('scroll', updateScrollState);
-		};
-	}, []);
-
 	return (
-		<_Navbar
-			backgroundColor={solidBackground ? 'var(--dynamic-navbar-background)' : 'transparent'}
-			{...props}>
+		<_Navbar {...props}>
 			<_NavbarContainer>{children}</_NavbarContainer>
 		</_Navbar>
 	);

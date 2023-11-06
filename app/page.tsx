@@ -1,60 +1,11 @@
+import { Card } from '@/components/card';
 import { Container } from '@/components/container';
 import { Curtain } from '@/components/curtain';
 import { Heading } from '@/components/heading';
 import { Mosaic } from '@/components/mosaic';
 import { Persona } from '@/components/persona';
-import type { Project } from '@/compounds/project';
 
-const loremIpsum = `
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-Integer gravida vestibulum pellentesque. Aliquam euismod rutrum pellentesque.
-Proin dignissim ullamcorper urna. Nam quis magna at velit aliquam scelerisque quis et tortor.
-`;
-
-const projects: Array<Project> = [
-	{
-		title: 'test',
-		src: 'image.svg',
-		alt: 'test',
-		summary: loremIpsum
-	},
-	{
-		title: 'test',
-		src: 'image_wide.svg',
-		alt: 'test',
-		summary: loremIpsum
-	},
-	{
-		title: 'test',
-		src: 'image_wide.svg',
-		alt: 'test',
-		summary: loremIpsum
-	},
-	{
-		title: 'test',
-		src: 'image.svg',
-		alt: 'test',
-		summary: loremIpsum
-	},
-	{
-		title: 'test',
-		src: 'image.svg',
-		alt: 'test',
-		summary: loremIpsum
-	},
-	{
-		title: 'test',
-		src: 'image.svg',
-		alt: 'test',
-		summary: loremIpsum
-	},
-	{
-		title: 'test',
-		src: 'image.svg',
-		alt: 'test',
-		summary: loremIpsum
-	}
-];
+import projects from '../projects.json';
 
 export default function Home() {
 	return (
@@ -63,9 +14,23 @@ export default function Home() {
 				<Heading color="white" level={1}>
 					Design Portfolio
 				</Heading>
-				<Persona src="placeholder.png" name="Dżejmalacho" designator="Graphic & UX/UI Designer" />
+				<Persona
+					src="placeholder.png"
+					name="Julia Małachowska"
+					designator="Graphic & UX/UI Designer"
+				/>
 			</Curtain>
 			<Container padding={8}>
+				<Card backgroundColor="var(--brand-violet)" padding={16} marginBottom={8} color="white">
+					<hgroup>
+						<Heading level={4} as="h2" textAlign="left">
+							My works
+						</Heading>
+						<Heading level={2} as="p" textAlign="left">
+							Browse projects
+						</Heading>
+					</hgroup>
+				</Card>
 				<Mosaic>{projects}</Mosaic>
 			</Container>
 		</main>

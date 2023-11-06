@@ -1,0 +1,34 @@
+[
+	{
+		"title": "First project",
+		"src": "https://picsum.photos/500/500",
+		"alt": "Description for the disabled",
+		"summary": "A short project description, detailing the purpose of its creation, as well as the challenges that were overcome throughout its duration.",
+		"href": "https://google.com",
+		"year": 2020
+	},
+	{
+		"title": "Second project",
+		"src": "https://picsum.photos/500/250",
+		"alt": "Description for the disabled",
+		"summary": "A short project description, detailing the purpose of its creation, as well as the challenges that were overcome throughout its duration.",
+		"href": "https://youtube.com",
+		"year": 2021
+	},
+	{
+		"title": "Project the third",
+		"src": "https://picsum.photos/500/250",
+		"alt": "Description for the disabled",
+		"summary": "A short project description, detailing the purpose of its creation, as well as the challenges that were overcome throughout its duration.",
+		"href": "https://google.com",
+		"year": 2022
+	},
+	{
+		"title": "Project IV",
+		"src": "https://picsum.photos/500/500",
+		"alt": "Description for the disabled",
+		"summary": "A short project description, detailing the purpose of its creation, as well as the challenges that were overcome throughout its duration.",
+		"href": "https://google.com",
+		"year": 2023
+	}
+]

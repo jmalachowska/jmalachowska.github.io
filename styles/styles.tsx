@@ -24,7 +24,7 @@ export function StyledComponentsRegistry({ children }: { children: React.ReactNo
 }
 
 export type GlobalStyleProps = {
-	nightMode?: boolean;
+	scroll: number;
 };
 
 const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
@@ -58,28 +58,43 @@ const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
 	src: url(fonts/Prompt-Black.ttf);
 }
 
+@font-face {
+	font-family: "KronaOne";
+	font-weight: 400;
+	src: url(fonts/KronaOne-Regular.ttf);
+}
+
 * {
 	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
 }
 
 :root {
 	--navbar-height: 72px;
 
-	--brand-amber: rgba(255, 100, 0, 0.6);
-	--brand-orange: #ffdebb;
+	--brand-amber: #ff6400;
+	--brand-amber-700: #ffa266;
+	--brand-amber-900: #ffcc99;
+	--brand-amber-translucent: #ff6400b0;
 	--brand-green: #0dff00;
+	--brand-green-000: #0a6600;
 	--brand-pink: #ff0090;
+	--brand-pink-000: #990054;
+	--brand-pink-900: #ff99d3;
+	--brand-pink-translucent: #ff0090d0;
 	--brand-cyan: #00ffff;
+	--brand-cyan-000: #006666;
 	--brand-violet-000: #510097;
 	--brand-violet: #900aff;
+	--brand-violet-translucent: #900affd0;
 	--brand-violet-700: #ba66ff;
+	--brand-yellow: #ffcc00;
+	--brand-yellow-700: #ffe066;
+	--brand-yellow-900: #fff5cc;
 
-	--support-graphite: #123456;
+	--support-peach: #ffaa99;
 
-	--dynamic-navbar-background: var(--brand-amber);
-	--dynamic-global-background: var(--brand-orange);
+	--dynamic-navbar-background: transparent;
+	--dynamic-global-background: var(--brand-yellow-700);
 	--dynamic-global-shadow: var(--brand-violet-700);
 }
 
@@ -89,15 +104,21 @@ html, body {
 	margin: 0;
 
 	min-width: 320px;
-
-	transition: background-color 1s;
 }
 
 body {
-	font-family: Signika;
 	margin-top: var(--navbar-height);
 
-	background-color: var(--dynamic-global-background);
+	font-family: Signika;
+	color: black;
+
+	background-color: var(--brand-amber-900);
+	background-image: url(sunset.svg);
+	background-size: cover;
+	background-attachment: fixed;
+	background-position: 50% 0%;
+
+	transition: background-position 1s;
 }
 
 body::before {
@@ -107,29 +128,36 @@ body::before {
 	height: 100%;
 	z-index: -1;
 
-	background-image: url(document-background.svg);
+	background-image: url(document-background-hc.svg);
 	background-size: cover;
 	background-repeat: repeat no-repeat;
 
-	transition: transform 1s;
+	transition: transform 1s, filter 1s;
 
 	@media (min-width: 720px) {
 		background-position: bottom;
 		background-size: contain;
 	}
-
 }
 
-${({ nightMode }) =>
-	nightMode &&
+${({ scroll }) =>
+	scroll > 0 &&
 	`
 :root {
-	--dynamic-global-background: var(--brand-violet-000);
-	--dynamic-global-shadow: var(--brand-pink);
+	--dynamic-navbar-background: var(--brand-amber-translucent);
+}
+`}
+
+${({ scroll }) =>
+	scroll > 360 &&
+	`
+body {
+	background-position: 50% 80%;
 }
 
 body::before {
-	transform: translateY(100%);
+	transform: translateY(20%);
+	filter: saturate(0.5);
 }
 `}
 `;
@@ -137,5 +165,5 @@ body::before {
 export function DynamicGlobalStyle() {
 	const scroll = useScroll();
 
-	return <GlobalStyle nightMode={scroll > 480} />;
+	return <GlobalStyle scroll={scroll} />;
 }

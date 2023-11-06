@@ -15,6 +15,7 @@ const _CurtainContainer = styled.div`
 	height: 640px;
 	max-width: 1280px;
 	margin: 0 auto;
+	margin-bottom: 128px;
 	overflow: hidden;
 `;
 
@@ -28,15 +29,17 @@ function _CurtainImageAttributes({ position, scroll }: _CurtainImageProps) {
 
 	return {
 		style: {
-			transform: `translate(${directionalTranslate}%, -50%)`
+			transform: `translate(${directionalTranslate * 0.8}%, -${scroll * 0.4}%)`
 		}
 	};
 }
 
 const _CurtainImage = styled.img.attrs<_CurtainImageProps>(_CurtainImageAttributes)`
-	position: absolute;
-	height: 100%;
-	top: 50%;
+	position: fixed;
+	height: calc(100% - var(--navbar-height));
+	bottom: 0;
+
+	z-index: -1;
 
 	user-select: none;
 
@@ -44,7 +47,7 @@ const _CurtainImage = styled.img.attrs<_CurtainImageProps>(_CurtainImageAttribut
 	display: ${position === 'right' ? 'block' : 'none'};
 	${position}: 0;
 
-	@media (min-width: 720px) {
+	@media (min-width: 900px) {
 		display: block;
 	}
 	`}
@@ -52,17 +55,18 @@ const _CurtainImage = styled.img.attrs<_CurtainImageProps>(_CurtainImageAttribut
 
 const _CurtainBackground = styled.img.attrs<Pick<_CurtainImageProps, 'scroll'>>(({ scroll }) => ({
 	style: {
-		transform: `translateY(${scroll}%)`
+		transform: `translateY(${scroll * 0.2}vh)`,
+		opacity: `${100 - scroll}%`
 	}
 }))`
-	position: absolute;
-	top: 0;
+	position: fixed;
+	top: 25%;
 	display: block;
-	height: 60%;
-	z-index: 0;
+	height: 45%;
+	z-index: -2;
 
 	@media (min-width: 720px) {
-		height: 80%;
+		height: 60%;
 	}
 `;
 
@@ -85,9 +89,9 @@ export function Curtain({ children, src }: CurtainProps) {
 
 	return (
 		<_CurtainContainer ref={ref}>
-			<_CurtainBackground alt="" aria-hidden src={src[2]} scroll={scroll * 1.25} />
-			<_CurtainImage alt="" aria-hidden src={src[0]} position="left" scroll={scroll * 0.4} />
-			<_CurtainImage alt="" aria-hidden src={src[1]} position="right" scroll={scroll * 0.4} />
+			<_CurtainBackground alt="" aria-hidden src={src[2]} scroll={scroll} />
+			<_CurtainImage alt="" aria-hidden src={src[0]} position="left" scroll={scroll} />
+			<_CurtainImage alt="" aria-hidden src={src[1]} position="right" scroll={scroll} />
 			<_CurtainContent>{children}</_CurtainContent>
 		</_CurtainContainer>
 	);

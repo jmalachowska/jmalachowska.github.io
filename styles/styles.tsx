@@ -94,8 +94,7 @@ const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
 	--support-peach: #ffaa99;
 
 	--dynamic-navbar-background: transparent;
-	--dynamic-global-background: var(--brand-yellow-700);
-	--dynamic-global-shadow: var(--brand-violet-700);
+	--dynamic-navbar-blur: transparent;
 }
 
 html, body {
@@ -112,32 +111,29 @@ body {
 	font-family: Signika;
 	color: black;
 
-	background-color: var(--brand-amber-900);
-	background-image: url(sunset.svg);
-	background-size: cover;
 	background-attachment: fixed;
-	background-position: 50% 0%;
+	background-color: var(--brand-amber-900);
+	background-image: url(sunset_alt.svg);
+	background-size: cover;
+	background-position: top;
 
 	transition: background-position 1s;
 }
 
 body::before {
 	position: fixed;
-	content: ' ';
+	content: '';
 	width: 100%;
 	height: 100%;
+	min-height: 720px;
 	z-index: -1;
 
-	background-image: url(document-background-hc.svg);
-	background-size: cover;
+	background-image: url(document-background-alt.svg);
+	background-size: auto 900px;
+	background-position: bottom;
 	background-repeat: repeat no-repeat;
 
 	transition: transform 1s, filter 1s;
-
-	@media (min-width: 720px) {
-		background-position: bottom;
-		background-size: contain;
-	}
 }
 
 ${({ scroll }) =>
@@ -145,14 +141,17 @@ ${({ scroll }) =>
 	`
 :root {
 	--dynamic-navbar-background: var(--brand-amber-translucent);
+	--dynamic-navbar-blur: 10px;
 }
 `}
 
 ${({ scroll }) =>
 	scroll > 360 &&
 	`
-body {
-	background-position: 50% 80%;
+@media (min-width: 900px) {
+	body {
+		background-position: bottom;
+	}
 }
 
 body::before {

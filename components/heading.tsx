@@ -39,18 +39,18 @@ const HEADING_STYLES: Array<_HeadingProps & Partial<HeadingProps>> = [
 	},
 	{
 		fontFamily: 'KronaOne',
-		fontSize: 28,
+		fontSize: 24,
 		lineHeight: 1.3,
 		textTransform: 'uppercase'
 	},
 	{
 		fontFamily: 'Signika',
 		fontWeight: 'bold',
-		fontSize: 24
+		fontSize: 22
 	},
 	{
 		fontFamily: 'Signika',
-		fontSize: 24
+		fontSize: 22
 	}
 ];
 

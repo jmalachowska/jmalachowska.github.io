@@ -15,7 +15,7 @@ const _CurtainContainer = styled.div`
 	height: 640px;
 	max-width: 1280px;
 	margin: 0 auto;
-	margin-bottom: 128px;
+	margin-bottom: 256px;
 	overflow: hidden;
 `;
 
@@ -29,44 +29,44 @@ function _CurtainImageAttributes({ position, scroll }: _CurtainImageProps) {
 
 	return {
 		style: {
-			transform: `translate(${directionalTranslate * 0.8}%, -${scroll * 0.4}%)`
+			transform: `translate(${directionalTranslate}%, -${scroll * 0.4}%)`
 		}
 	};
 }
 
 const _CurtainImage = styled.img.attrs<_CurtainImageProps>(_CurtainImageAttributes)`
 	position: fixed;
-	height: calc(100% - var(--navbar-height));
-	bottom: 0;
+	height: 480px;
+	top: 72px;
 
 	z-index: -1;
-
-	user-select: none;
 
 	${({ position }) => `
 	display: ${position === 'right' ? 'block' : 'none'};
 	${position}: 0;
 
-	@media (min-width: 900px) {
+	@media (min-width: 720px) {
 		display: block;
+		height: 720px;
 	}
 	`}
 `;
 
 const _CurtainBackground = styled.img.attrs<Pick<_CurtainImageProps, 'scroll'>>(({ scroll }) => ({
 	style: {
-		transform: `translateY(${scroll * 0.2}vh)`,
+		transform: `translateY(${scroll * 0.2}%)`,
 		opacity: `${100 - scroll}%`
 	}
 }))`
 	position: fixed;
-	top: 25%;
 	display: block;
-	height: 45%;
+	top: 200px;
+	height: 320px;
 	z-index: -2;
 
 	@media (min-width: 720px) {
-		height: 60%;
+		top: 180px;
+		height: 400px;
 	}
 `;
 

@@ -10,7 +10,7 @@ import projects from '../projects.json';
 export default function Home() {
 	return (
 		<main>
-			<Curtain src={['palmtree_alt.svg', 'palmtree.svg', 'sun.svg']}>
+			<Curtain src={['palmtree_left_alt.svg', 'palmtree_right_alt.svg', 'sun_dot.svg']}>
 				<Heading color="white" level={1}>
 					Design Portfolio
 				</Heading>

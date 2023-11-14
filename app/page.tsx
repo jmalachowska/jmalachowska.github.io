@@ -1,3 +1,5 @@
+'use client';
+
 import { Card } from '@/components/card';
 import { Container } from '@/components/container';
 import { Curtain } from '@/components/curtain';
@@ -15,7 +17,7 @@ export default function Home() {
 					Design Portfolio
 				</Heading>
 				<Persona
-					src="placeholder.png"
+					src="jmalacho.png"
 					name="Julia Małachowska"
 					designator="Graphic & UX/UI Designer"
 				/>

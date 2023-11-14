@@ -3,11 +3,14 @@ import type { Ref } from 'react';
 import { clamp } from './math';
 
 export function useScroll(): number {
-	const [windowScroll, setWindowScroll] = useState<number>(0);
+	const [windowScroll, setWindowScroll] = useState<number>(window.scrollY);
 
 	useEffect(() => {
+		document.body.style.setProperty('--scroll', window.scrollY.toString());
+
 		const updateElementScroll = () => {
 			setWindowScroll(window.scrollY);
+			document.body.style.setProperty('--scroll', window.scrollY.toString());
 		};
 
 		addEventListener('scroll', updateElementScroll);

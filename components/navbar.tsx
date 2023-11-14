@@ -1,8 +1,15 @@
 'use client';
 
 import { CommonProps } from '@/utils/props';
+import { useScroll } from '@/utils/viewport';
 import { ReactNode } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const navbarBackgroundKeyframes = keyframes`
+to {
+	background-color: #ccffffaa;
+}
+`;
 
 const _Navbar = styled.div`
 	position: fixed;
@@ -13,7 +20,10 @@ const _Navbar = styled.div`
 	background-color: var(--dynamic-navbar-background);
 	backdrop-filter: blur(10px);
 
-	transition: background-color 0.5s;
+	--scroll-percent: clamp(0, calc(var(--scroll) / 128), 1);
+	animation: ${navbarBackgroundKeyframes} 1s linear forwards;
+	animation-play-state: paused;
+	animation-delay: calc(var(--scroll-percent) * -1s);
 `;
 
 const _NavbarContainer = styled.nav`
@@ -29,6 +39,8 @@ export type NavbarProps = {
 } & CommonProps;
 
 export function Navbar({ children, ...props }: NavbarProps) {
+	useScroll();
+
 	return (
 		<_Navbar {...props}>
 			<_NavbarContainer>{children}</_NavbarContainer>

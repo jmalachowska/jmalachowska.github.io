@@ -1,8 +1,13 @@
 'use client';
 
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import { useServerInsertedHTML } from 'next/navigation';
-import { createGlobalStyle, ServerStyleSheet, StyleSheetManager } from 'styled-components';
+import {
+	createGlobalStyle,
+	keyframes,
+	ServerStyleSheet,
+	StyleSheetManager
+} from 'styled-components';
 import { useScroll } from '@/utils/viewport';
 
 export function StyledComponentsRegistry({ children }: { children: React.ReactNode }) {
@@ -23,11 +28,20 @@ export function StyledComponentsRegistry({ children }: { children: React.ReactNo
 	);
 }
 
-export type GlobalStyleProps = {
-	scroll: number;
-};
+const waveKeyframes = keyframes`
+	to {
+		transform: translate3d(0, 20%, 0);
+		filter: saturate(0.5);
+	}
+`;
 
-const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
+const skyKeyframes = keyframes`
+	to {
+		background-position: 0 100%;
+	}
+`;
+
+const GlobalStyle = createGlobalStyle`
 @font-face {
 	font-family: "Agbalumo";
 	font-weight: 400;
@@ -50,12 +64,6 @@ const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
 	font-family: "Signika";
 	font-weight: 700;
 	src: url(fonts/SignikaNegative-Medium.ttf);
-}
-
-@font-face {
-	font-family: "Prompt";
-	font-weight: 700;
-	src: url(fonts/Prompt-Black.ttf);
 }
 
 @font-face {
@@ -92,9 +100,6 @@ const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
 	--brand-yellow-900: #fff5cc;
 
 	--support-peach: #ffaa99;
-
-	--dynamic-navbar-background: transparent;
-	--dynamic-navbar-blur: transparent;
 }
 
 html, body {
@@ -106,6 +111,8 @@ html, body {
 }
 
 body {
+	--scroll-percent: clamp(0, calc(var(--scroll) / 720), 1);
+
 	margin-top: var(--navbar-height);
 
 	font-family: Signika;
@@ -113,11 +120,13 @@ body {
 
 	background-attachment: fixed;
 	background-color: var(--brand-amber-900);
-	background-image: url(sunset_alt.svg);
+	background-image: url(sunset.svg);
 	background-size: cover;
 	background-position: top;
 
-	transition: background-position 1s;
+	animation: ${skyKeyframes} 1s linear forwards;
+	animation-play-state: paused;
+	animation-delay: calc(var(--scroll-percent) * -1.5s);
 }
 
 body::before {
@@ -128,41 +137,19 @@ body::before {
 	min-height: 720px;
 	z-index: -1;
 
-	background-image: url(document-background-alt.svg);
+	background-image: url(document-background.svg);
 	background-size: auto 900px;
 	background-position: bottom;
 	background-repeat: repeat no-repeat;
 
-	transition: transform 1s, filter 1s;
+	animation: ${waveKeyframes} 1s linear forwards;
+	animation-play-state: paused;
+	animation-delay: calc(var(--scroll-percent) * -1s);
 }
-
-${({ scroll }) =>
-	scroll > 0 &&
-	`
-:root {
-	--dynamic-navbar-background: var(--brand-amber-translucent);
-	--dynamic-navbar-blur: 10px;
-}
-`}
-
-${({ scroll }) =>
-	scroll > 360 &&
-	`
-@media (min-width: 900px) {
-	body {
-		background-position: bottom;
-	}
-}
-
-body::before {
-	transform: translateY(20%);
-	filter: saturate(0.5);
-}
-`}
 `;
 
 export function DynamicGlobalStyle() {
-	const scroll = useScroll();
+	useScroll();
 
-	return <GlobalStyle scroll={scroll} />;
+	return <GlobalStyle />;
 }

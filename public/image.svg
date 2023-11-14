@@ -26,7 +26,7 @@
      showgrid="true"
      inkscape:zoom="26.151032"
      inkscape:cx="11.318865"
-     inkscape:cy="13.058758"
+     inkscape:cy="13.039638"
      inkscape:window-width="1920"
      inkscape:window-height="1011"
      inkscape:window-x="0"
@@ -57,16 +57,16 @@
      inkscape:groupmode="layer"
      id="layer1">
     <path
-       style="fill:none;stroke:#0066ff;stroke-width:0.52916667;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:none;stroke:#900aff;stroke-width:0.529;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-dasharray:none"
        d="M 0.52916669,0.52916669 V 5.8208335 H 5.8208335 V 0.52916669 Z"
        id="path1" />
     <path
-       style="fill:none;stroke:#0066ff;stroke-width:0.52916667;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:none;stroke:#900aff;stroke-width:0.529;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-dasharray:none"
        d="m 2.6458333,5.8208335 c 2e-7,-1.8520833 1.3229169,-3.175 3.1750002,-3.1750002"
        id="path2"
        sodipodi:nodetypes="cc" />
     <circle
-       style="fill:none;stroke:#0066ff;stroke-width:0.52916698;stroke-linejoin:round;stroke-dasharray:none"
+       style="fill:none;stroke:#900aff;stroke-width:0.529;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
        id="path3"
        cx="1.9843751"
        cy="1.9843751"

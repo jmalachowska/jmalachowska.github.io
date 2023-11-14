@@ -15,7 +15,7 @@ const _PersonaImage = styled.img`
 	margin: 0 auto;
 	position: relative;
 
-	width: 280px;
+	width: 300px;
 `;
 
 export type PersonaProps = {

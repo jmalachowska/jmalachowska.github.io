@@ -1,6 +1,7 @@
 'use client';
 
 import { Card } from '@/components/card';
+import { ContactForm } from '@/components/contact';
 import { Container } from '@/components/container';
 import { Curtain } from '@/components/curtain';
 import { Heading } from '@/components/heading';
@@ -34,6 +35,10 @@ export default function Home() {
 					</hgroup>
 				</Card>
 				<Mosaic>{projects}</Mosaic>
+				<ContactForm target="mmjula@wp.pl" />
+				<Card as="footer" marginTop={92} backgroundColor="var(--brand-yellow-900)">
+					TEXT
+				</Card>
 			</Container>
 		</main>
 	);

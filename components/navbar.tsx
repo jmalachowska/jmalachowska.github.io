@@ -17,7 +17,6 @@ const _Navbar = styled.div`
 	z-index: 999;
 	width: 100%;
 	height: var(--navbar-height);
-	background-color: var(--dynamic-navbar-background);
 	backdrop-filter: blur(10px);
 
 	--scroll-percent: clamp(0, calc(var(--scroll) / 128), 1);

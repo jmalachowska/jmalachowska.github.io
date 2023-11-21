@@ -15,7 +15,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				<StyledComponentsRegistry>
 					<DynamicGlobalStyle />
 					<Navbar>
-						<Logo src="image.svg" />
+						<Logo src="logo_jula.svg" />
 					</Navbar>
 					{children}
 				</StyledComponentsRegistry>

@@ -29,7 +29,7 @@ const HEADING_STYLES: Array<_HeadingProps & Partial<HeadingProps>> = [
 	{
 		fontFamily: 'Pacifico',
 		fontSize: 48,
-		lineHeight: 2,
+		lineHeight: 1.25,
 		textShadow: [
 			'0  3px 0 ' + H1_OUTLINE_COLOR,
 			'0 -3px 0 ' + H1_OUTLINE_COLOR,

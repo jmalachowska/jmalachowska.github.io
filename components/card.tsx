@@ -5,6 +5,7 @@ import type { ReactElement, ReactNode } from 'react';
 import { styled } from 'styled-components';
 
 export type CardProps = {
+	id?: string;
 	children?: ReactNode;
 	padding?: number;
 	marginTop?: number;
@@ -15,6 +16,7 @@ export type CardProps = {
 	backgroundGradient?: string;
 	backgroundColor?: string;
 	color?: string;
+	tabindex?: number;
 } & CommonProps;
 
 const _Card = styled.div<CardProps>`

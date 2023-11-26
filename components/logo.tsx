@@ -6,6 +6,7 @@ const _Logo = styled.img`
 	display: block;
 	height: 64px;
 	width: auto;
+	padding: 8px 0;
 `;
 
 export type LogoProps = {
@@ -13,5 +14,5 @@ export type LogoProps = {
 };
 
 export function Logo({ ...props }: LogoProps) {
-	return <_Logo {...props} />;
+	return <_Logo {...props} alt="logo" />;
 }

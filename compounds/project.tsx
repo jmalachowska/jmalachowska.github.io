@@ -14,8 +14,6 @@ const PROJECT_COLOR_TO_ACCENT: Record<string, string> = {
 };
 
 const _Card = styled(Card)<{ role: string; onClick: () => void }>`
-	tab-index: 1;
-
 	@media (min-width: 720px) and (hover) {
 		transition: transform 0.2s;
 
@@ -73,7 +71,7 @@ export function ProjectTile({
 	}
 
 	return (
-		<_Card backgroundGradient={color} padding={16} role="link" onClick={visitLink}>
+		<_Card tabindex={1} backgroundGradient={color} padding={16} role="link" onClick={visitLink}>
 			<_Image src={src} alt={alt} borderColor={accentColor} />
 			<Heading textAlign="left" level={3} as="p" marginTop={8} color={accentColor}>
 				{year.toString()}
@@ -82,7 +80,6 @@ export function ProjectTile({
 				{title}
 			</Heading>
 			<p>{children}</p>
-			<a href={href}></a>
 		</_Card>
 	);
 }

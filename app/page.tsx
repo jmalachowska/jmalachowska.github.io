@@ -4,6 +4,7 @@ import { Card } from '@/components/card';
 import { ContactForm } from '@/components/contact';
 import { Container } from '@/components/container';
 import { Curtain } from '@/components/curtain';
+import { Footer } from '@/components/footer';
 import { Heading } from '@/components/heading';
 import { Mosaic } from '@/components/mosaic';
 import { Persona } from '@/components/persona';
@@ -13,7 +14,7 @@ import projects from '../projects.json';
 export default function Home() {
 	return (
 		<main>
-			<Curtain src={['palmtree_left_alt.svg', 'palmtree_right_alt.svg', 'sun_dot.svg']}>
+			<Curtain src={['palmtree_left.svg', 'palmtree_right.svg', 'sun.svg']}>
 				<Heading color="white" level={1}>
 					Design Portfolio
 				</Heading>
@@ -36,9 +37,11 @@ export default function Home() {
 				</Card>
 				<Mosaic>{projects}</Mosaic>
 				<ContactForm target="mmjula@wp.pl" />
-				<Card as="footer" marginTop={92} backgroundColor="var(--brand-yellow-900)">
-					TEXT
-				</Card>
+				<Footer>
+					© 2023 Julia Małachowska
+					<br />
+					<small>Co-designed & created by Artur Miller</small>
+				</Footer>
 			</Container>
 		</main>
 	);

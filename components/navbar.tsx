@@ -7,7 +7,7 @@ import styled, { keyframes } from 'styled-components';
 
 const navbarBackgroundKeyframes = keyframes`
 to {
-	background-color: #ccffffaa;
+	background-color: #510097aa;
 }
 `;
 
@@ -28,8 +28,10 @@ const _Navbar = styled.div`
 const _NavbarContainer = styled.nav`
 	display: flex;
 	align-items: center;
+	justify-content: space-between;
 	max-width: 720px;
 	margin: 0 auto;
+	padding: 0 8px;
 	height: 100%;
 `;
 

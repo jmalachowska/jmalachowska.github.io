@@ -95,6 +95,7 @@ const GlobalStyle = createGlobalStyle`
 	--brand-violet: #900aff;
 	--brand-violet-translucent: #900affd0;
 	--brand-violet-700: #ba66ff;
+	--brand-violet-900: #d199ff;
 	--brand-yellow: #ffcc00;
 	--brand-yellow-700: #ffe066;
 	--brand-yellow-900: #fff5cc;
@@ -104,6 +105,7 @@ const GlobalStyle = createGlobalStyle`
 
 html, body {
 	scroll-behavior: smooth!important;
+	scroll-padding: calc(var(--navbar-height) + 8px);
 	width: 100%;
 	margin: 0;
 

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { StyledComponentsRegistry, DynamicGlobalStyle } from '@/styles/styles';
 import { Navbar } from '@/components/navbar';
 import { Logo } from '@/components/logo';
+import { Button } from '@/components/button';
 
 export const metadata: Metadata = {
 	title: 'Portfolio | J. Małachowska',
@@ -15,7 +16,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				<StyledComponentsRegistry>
 					<DynamicGlobalStyle />
 					<Navbar>
-						<Logo src="logo_jula.svg" />
+						<Logo src="logo.svg" />
+						<Button variant="outline" href="#contact">
+							Contact
+						</Button>
 					</Navbar>
 					{children}
 				</StyledComponentsRegistry>

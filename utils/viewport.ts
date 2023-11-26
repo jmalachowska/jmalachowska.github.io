@@ -3,9 +3,15 @@ import type { Ref } from 'react';
 import { clamp } from './math';
 
 export function useScroll(): number {
-	const [windowScroll, setWindowScroll] = useState<number>(window.scrollY);
+	const [windowScroll, setWindowScroll] = useState<number>(
+		typeof window === 'undefined' ? 0 : window.scrollY
+	);
 
 	useEffect(() => {
+		if (typeof window === 'undefined') {
+			return;
+		}
+
 		document.body.style.setProperty('--scroll', window.scrollY.toString());
 
 		const updateElementScroll = () => {
